@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import axios from "axios"; // '../../utils/axios';
 import NewsItem from "../newsitems/NewsItem";
 import { Model } from "../newsitems/Model";
+import {NoDataFound} from '../ui/NoDataFound';
 
 class MainPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      headLineArticles: [],
+      headLineArticles: null,
       searchVale: null,
       article: null,
       isLoading: true,
@@ -32,7 +33,9 @@ class MainPage extends Component {
       .then(resp => {
         if (resp.status === 200) {
           this.setState({
-            headLineArticles: resp.data.articles
+            headLineArticles: resp.data.articles,
+            isLoading: false,
+
           });
         }
       })
@@ -56,7 +59,8 @@ class MainPage extends Component {
           console.log(resp);
 
           this.setState({
-            headLineArticles: resp.data.articles
+            headLineArticles: resp.data.articles,
+            isLoading: false,
           });
         }
       }).catch(err => {
@@ -80,8 +84,11 @@ class MainPage extends Component {
     });
   };
   render() {
-    var newzs = this.state.headLineArticles
-      ? this.state.headLineArticles.map((article, index) => {
+
+    const {headLineArticles,article,isLoading,searchVale,errorMsg} = this.state;
+
+    var newzs = headLineArticles
+      ? headLineArticles.map((article, index) => {
           return (
             <NewsItem
               article={article}
@@ -93,8 +100,11 @@ class MainPage extends Component {
       : null;
     return (
       <>
-        <Model article={this.state.article} />
-
+        <Model article={article} />
+        <div className="float-right" style={{ marginleft: "16rem" }}>
+              {isLoading ? <div className="loader"></div> : null}
+              
+            </div>
         <div className="row">
           <div className="container">
             {" "}
@@ -104,7 +114,7 @@ class MainPage extends Component {
                   type="text"
                   class="form-control"
                   placeholder="Search news"
-                  value={this.state.searchVale}
+                  value={searchVale}
                   onChange={this.handleChange}
                 />
                 <div class="input-group-append">
@@ -121,9 +131,11 @@ class MainPage extends Component {
             </form>
           </div>
           {newzs}
-          {this.state.errorMsg ? 
+          <NoDataFound data ={headLineArticles}/>
+
+          {errorMsg ? 
         <div class="alert alert-danger">
-            {this.state.errorMsg}
+            {errorMsg}
         </div> :null
         }
         </div>
