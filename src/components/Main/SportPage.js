@@ -62,10 +62,11 @@ class SportPage extends Component {
     return (
       <>
         <Model article={article} />
-        <div className="container">
-          <div className="float-right" style={{ marginleft: "16rem" }}>
+        <div className="float-right" style={{ marginleft: "16rem" }}>
             {isLoading ? <div className="loader"></div> : null}
           </div>
+        <div className="container">
+         
           <div class="panel panel-default">
             <div class="panel-body text-center text-muted newz-header">
               Sports News
