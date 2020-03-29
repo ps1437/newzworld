@@ -108,6 +108,9 @@ class Country extends Component {
     return (
       <>
         <Model article={article} />
+        <div className="float-right" style={{ marginleft: "16rem" }}>
+                {isLoading ? <div className="loader"></div> : null}
+              </div>
         <div className="container">
           <div className="panel panel-default">
             <div className="row">
@@ -121,9 +124,7 @@ class Country extends Component {
                   {countryList}
                 </select>
               </div>
-              <div className="float-right" style={{ marginleft: "16rem" }}>
-                {isLoading ? <div className="loader"></div> : null}
-              </div>
+             
             </div>
 
             <div className=" text-center text-muted newz-header">
