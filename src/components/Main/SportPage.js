@@ -11,7 +11,13 @@ class SportPage extends Component {
     };
   }
   componentDidMount() {
-    axios
+  this.fetchNewz();
+  }
+
+  fetchNewz =() =>{
+
+    setTimeout(() => {
+      axios
       .get(
         "https://newsapi.org/v2/everything?q=sports&apiKey=96160821c5194fed9dc50a562bbed555"
       )
@@ -23,6 +29,9 @@ class SportPage extends Component {
         }
       })
       .catch(err => console.log(err));
+    }
+    ,7000);
+
   }
 
   render() {

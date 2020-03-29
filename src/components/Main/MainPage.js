@@ -9,11 +9,23 @@ class MainPage extends Component {
     this.state = {
       headLineArticles: [],
       searchVale: null,
-      article: null
+      article: null,
+      isLoading: true,
+      errorMsg:""
     };
   }
   componentDidMount() {
-    axios
+  
+
+      this.fetchNewz();
+  }
+
+  fetchNewz =()=>{
+  
+
+    setTimeout(() => { 
+
+      axios
       .get(
         "https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=96160821c5194fed9dc50a562bbed555"
       )
@@ -24,7 +36,13 @@ class MainPage extends Component {
           });
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        this.setState({
+          isLoading: false,
+          errorMsg:"Ops Something Went Wrong"
+        });
+      } );
+    },8000)
   }
   searchNews = event => {
     axios
@@ -41,7 +59,12 @@ class MainPage extends Component {
             headLineArticles: resp.data.articles
           });
         }
-      });
+      }).catch(err => {
+        this.setState({
+          isLoading: false,
+          errorMsg:"Ops Something Went Wrong"
+        });
+      } );
   };
 
   handleChange = event => {
@@ -98,6 +121,11 @@ class MainPage extends Component {
             </form>
           </div>
           {newzs}
+          {this.state.errorMsg ? 
+        <div class="alert alert-danger">
+            {this.state.errorMsg}
+        </div> :null
+        }
         </div>
       </>
     );

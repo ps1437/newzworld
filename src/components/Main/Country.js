@@ -18,6 +18,13 @@ class Country extends Component {
 
   componentDidMount() {
   
+    this.fetchNewz();
+  }
+
+  fetchNewz =()=>{
+
+    setTimeout(() => {
+
       axios
       .get(
         "https://newsapi.org/v2/top-headlines?country=in&apiKey=96160821c5194fed9dc50a562bbed555"
@@ -31,12 +38,12 @@ class Country extends Component {
         }
       })
       .catch(err => {
-        console.log(err)
         this.setState({
           isLoading: false,
           errorMsg:"Ops Something Went Wrong"
         });
       } );
+     },10000)
   }
 
   countrySearch = async event => {
