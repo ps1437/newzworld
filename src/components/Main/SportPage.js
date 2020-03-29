@@ -13,7 +13,7 @@ class SportPage extends Component {
   componentDidMount() {
     axios
       .get(
-        "http://newsapi.org/v2/everything?q=sports&apiKey=96160821c5194fed9dc50a562bbed555"
+        "https://newsapi.org/v2/everything?q=sports&apiKey=96160821c5194fed9dc50a562bbed555"
       )
       .then(resp => {
         if (resp.status === 200) {

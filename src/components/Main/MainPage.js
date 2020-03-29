@@ -15,7 +15,7 @@ class MainPage extends Component {
   componentDidMount() {
     axios
       .get(
-        "http://newsapi.org/v2/top-headlines?sources=google-news&apiKey=96160821c5194fed9dc50a562bbed555"
+        "https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=96160821c5194fed9dc50a562bbed555"
       )
       .then(resp => {
         if (resp.status === 200) {
@@ -29,7 +29,7 @@ class MainPage extends Component {
   searchNews = event => {
     axios
       .get(
-        "http://newsapi.org/v2/everything?q=" +
+        "https://newsapi.org/v2/everything?q=" +
           this.state.searchVale +
           "&apiKey=96160821c5194fed9dc50a562bbed555"
       )
