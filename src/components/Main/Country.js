@@ -3,7 +3,7 @@ import axios from "axios"; // '../../utils/axios';
 import NewsItem from "../newsitems/NewsItem";
 import { CountyData } from "./country-data";
 import { Model } from "../newsitems/Model";
-import {NoDataFound} from '../ui/NoDataFound';
+import { NoDataFound } from "../ui/NoDataFound";
 
 class Country extends Component {
   constructor(props) {
@@ -91,8 +91,14 @@ class Country extends Component {
       return <option value={country.code}> {country.name}</option>;
     });
 
-    const {headLineArticles,article,isLoading,countryName,errorMsg,countryCode} = this.state;
-
+    const {
+      headLineArticles,
+      article,
+      isLoading,
+      countryName,
+      errorMsg,
+      countryCode
+    } = this.state;
 
     var newzs = headLineArticles
       ? headLineArticles.map((article, index) => {
@@ -109,8 +115,8 @@ class Country extends Component {
       <>
         <Model article={article} />
         <div className="float-right" style={{ marginleft: "16rem" }}>
-                {isLoading ? <div className="loader"></div> : null}
-              </div>
+          {isLoading ? <div className="loader"></div> : null}
+        </div>
         <div className="container">
           <div className="panel panel-default">
             <div className="row">
@@ -124,20 +130,16 @@ class Country extends Component {
                   {countryList}
                 </select>
               </div>
-             
             </div>
 
             <div className=" text-center text-muted newz-header">
               <u>HeadLines</u> - {countryName}
             </div>
           </div>
-          <NoDataFound data ={headLineArticles}/>
-
+          <NoDataFound data={headLineArticles} />
 
           <div className="row">{newzs}</div>
-          {errorMsg ? (
-            <div class="alert alert-danger">{errorMsg}</div>
-          ) : null}
+          {errorMsg ? <div class="alert alert-danger">{errorMsg}</div> : null}
         </div>
       </>
     );
