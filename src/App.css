@@ -1,0 +1,175 @@
+.selector-for-some-widget {
+  box-sizing: content-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+.wrapper {
+  min-height: 100%;
+
+  /* Equal to height of footer */
+  /* But also accounting for potential margin-bottom of last child */
+  margin-bottom: -50px;
+}
+.footer,
+.push {
+  height: 50px;
+}
+.fa{
+  font-size: 1.8rem;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.row > div[class*='col-'] {
+ display: flex;
+}
+
+.card{
+  margin: 12px;;
+}
+
+.main{
+  width: 95%;
+
+
+}
+.search{
+  width: 400px;
+  margin-top: 1rem;
+}
+.newz-header{
+  font-size: 2rem;
+  background-color: aliceblue;
+  font-family: fantasy;    margin-top: 1rem;
+}
+
+.card-body-item{
+  padding: 0.5rem 0.1rem !important;
+}
+.card-img-top {
+  width: 100%;
+  padding: 0.8rem 0rem;
+  border-top-left-radius: calc(.25rem - 1px);
+  border-top-right-radius: calc(.25rem - 1px);
+}
+
+select{
+  margin-top: 1rem;
+    border: 1px seagreen;
+}
+
+.nav-link{
+  font-size: 1.2rem !important;
+}
+
+
+.bg-light-nav {
+	background-color: #ffffff !important;
+	box-shadow: 4px -2px 10px gray !important;
+}
+
+.navbar-light .navbar-brand {
+	color: rgb(22, 145, 243);
+	margin-right: 2rem;
+	font-size: 1.5rem;
+	padding: 1rem 1rem;
+	font-weight: 700;
+	font-family: 'Exo', sans-serif;
+}
+
+a {
+	text-transform: uppercase;
+	text-decoration: none;
+	display: inline-block;
+	position: relative;
+	transition: all 0.5s ease;
+}
+
+.itemName:after {
+	background: none repeat scroll 0 0 transparent;
+	bottom: 0;
+	content: "";
+	display: block;
+	height: 2px;
+	left: 50%;
+	position: absolute;
+	background: black;
+	transition: width 0.3s ease 0s, left 0.3s ease 0s;
+	width: 0;
+}
+
+
+.nav-item {
+	font-size: 1.2rem;
+	padding: 0rem 0.5rem;;
+}
+
+.navbar-brand:hover {
+	color: rgb(22, 145, 243) !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 10px;
+	height: "50px";
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+	height: "50px";
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #888;
+	height: "50px";
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+	height: "50px";
+}
+
+.active{
+  font-weight: 500;
+}
+
+body{
+  font-size: 1.2rem !important;
+}
+.card-read-more {
+  border-top: 1px solid #D4D4D4;
+}
+.card-read-more a {
+  text-decoration: none !important;
+  padding:10px;
+  font-weight:600;
+  text-transform: uppercase
+}
+.card-title-cust{
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.card-publish-date{
+	font-size:0.9rem
+}
+
+.card:hover {
+	box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+
+  .card {
+	display: block; 
+	  margin-bottom: 20px;
+	  line-height: 1.42857143;
+	  background-color: #fff;
+	  border-radius: 2px;
+	  transition: box-shadow .25s; 
+  }
