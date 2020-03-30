@@ -13,10 +13,23 @@ html, body {
   /* But also accounting for potential margin-bottom of last child */
   margin-bottom: -50px;
 }
-.footer,
-.push {
-  height: 50px;
+.sticky{
+	position: fixed;
 }
+footer
+ {
+	height: 50px;
+    padding: 1rem 1rem;
+    text-align: center;
+    background-color: #eadddd;
+    color: #150b0b;
+	font-weight: 800;
+	
+	bottom: 0;
+	width: 100%;
+}
+
+
 .fa{
   font-size: 1.8rem;
 }
@@ -45,7 +58,7 @@ html, body {
 
 @media only screen and (max-device-width: 480px) {
 	.search{
-		width: 350px;
+		width: 300px;
 		margin-top: 1rem;
 	  }
 
@@ -121,7 +134,9 @@ a {
 .navbar-brand:hover {
 	color: rgb(22, 145, 243) !important;
 }
-
+.icon-link{
+	padding: 0px 7px;
+}
 /* width */
 ::-webkit-scrollbar {
 	width: 10px;
@@ -182,3 +197,68 @@ body{
 	  border-radius: 2px;
 	  transition: box-shadow .25s; 
   }
+
+  .news-category{
+	color: #6c757d!important;
+    padding: 2rem;
+    font-weight: 700;
+}
+  
+
+
+.fade-in {
+	animation: fadeIn ease 5s;
+	-webkit-animation: fadeIn ease 5s;
+	-moz-animation: fadeIn ease 5s;
+	-o-animation: fadeIn ease 5s;
+	-ms-animation: fadeIn ease 5s;
+  }
+
+  @keyframes fadeIn{
+	0% {
+	  opacity:0;
+	}
+	100% {
+	  opacity:1;
+	}
+  }
+  
+  @-moz-keyframes fadeIn {
+	0% {
+	  opacity:0;
+	}
+	100% {
+	  opacity:1;
+	}
+  }
+  
+  @-webkit-keyframes fadeIn {
+	0% {
+	  opacity:0;
+	}
+	100% {
+	  opacity:1;
+	}
+  }
+  
+  @-o-keyframes fadeIn {
+	0% {
+	  opacity:0;
+	}
+	100% {
+	  opacity:1;
+	}
+  }
+  
+  @-ms-keyframes fadeIn {
+	0% {
+	  opacity:0;
+	}
+	100% {
+	  opacity:1;
+	}
+  }
+  
+  /* The style below is just for the appearance of the example div */
+  
+  

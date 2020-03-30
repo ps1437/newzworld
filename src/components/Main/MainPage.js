@@ -1,9 +1,19 @@
 import React, { Component } from "react";
-import axios from "axios"; // '../../utils/axios';
 import NewsItem from "../newsitems/NewsItem";
 import { Model } from "../newsitems/Model";
-import {NoDataFound} from '../ui/NoDataFound';
+import { NoDataFound } from "../ui/NoDataFound";
+import { Footer } from "../ui/Footer";
 
+import { Error } from "../ui/Error";
+import { withRouter } from "react-router-dom";
+import { getHeadLines, searchNews } from "../../service/NewsService";
+
+const routerInfoConfig = {
+  sports: "Sports",
+  tech: "Technology",
+  politics: "Politics",
+  headlines: "Headlines"
+};
 class MainPage extends Component {
   constructor(props) {
     super(props);
@@ -12,63 +22,69 @@ class MainPage extends Component {
       searchVale: null,
       article: null,
       isLoading: true,
-      errorMsg:""
+      errorMsg: "",
+      path: null
     };
   }
-  componentDidMount() {
-  
-
-      this.fetchNewz();
+  async componentDidMount() {
+    await this.fetchNewz();
   }
 
-  fetchNewz =()=>{
-  
+  UNSAFE_componentWillReceiveProps(nxtProps) {
+    const searchId = routerInfoConfig[nxtProps.match.params.id];
+    const params = nxtProps.match.params.id;
+    if (params === "headlines") {
+      this.setState({ path: searchId });
+      this.fetchNewz();
+    } else if (this.state.path !== params) {
+      this.setState({ path: searchId });
+      this.searchNews(searchId);
+    }
+  }
 
-    setTimeout(() => { 
-
-      axios
-      .get(
-        "https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=96160821c5194fed9dc50a562bbed555"
-      )
+  fetchNewz = async () => {
+    this.setState({
+      isLoading: true,
+    });
+    await getHeadLines()
       .then(resp => {
         if (resp.status === 200) {
           this.setState({
             headLineArticles: resp.data.articles,
             isLoading: false,
-
+            errorMsg:""
           });
         }
       })
       .catch(err => {
         this.setState({
           isLoading: false,
-          errorMsg:"Ops Something Went Wrong"
+          errorMsg: "Ops Something Went Wrong"
         });
-      } );
-    },8000)
-  }
-  searchNews = event => {
-    axios
-      .get(
-        "https://newsapi.org/v2/everything?q=" +
-          this.state.searchVale +
-          "&apiKey=96160821c5194fed9dc50a562bbed555"
-      )
+      });
+  };
+
+  searchNews = async searchVal => {
+    this.setState({
+      isLoading: true,
+    });
+   
+    await searchNews(searchVal)
       .then(resp => {
         if (resp.status === 200) {
-          console.log(resp);
-
           this.setState({
             headLineArticles: resp.data.articles,
             isLoading: false,
+            errorMsg:""
           });
         }
-      }).catch(err => {
+      })
+      .catch(err => {
         this.setState({
           isLoading: false,
-          errorMsg:"Ops Something Went Wrong"
+          errorMsg: "Ops Something Went Wrong"
         });
-      } );
+      });
   };
 
   handleChange = event => {
@@ -83,9 +99,15 @@ class MainPage extends Component {
       article: article
     });
   };
-  render() {
 
-    const {headLineArticles,article,isLoading,searchVale,errorMsg} = this.state;
+  render() {
+    const {
+      headLineArticles,
+      article,
+      isLoading,
+      searchVale,
+      errorMsg
+    } = this.state;
 
     var newzs = headLineArticles
       ? headLineArticles.map((article, index) => {
@@ -101,47 +123,50 @@ class MainPage extends Component {
     return (
       <>
         <Model article={article} />
-        <div className="float-right" style={{ marginleft: "16rem" }}>
-              {isLoading ? <div className="loader"></div> : null}
-              
-            </div>
+        <div className="container fade-in">
+
+        {isLoading ? <div className="loader"></div> : null}
         <div className="row">
-          <div className="container">
+          <div className="container ">
             {" "}
-            <form style={{ float: "right" }}>
-              <div class="input-group search">
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Search news"
-                  value={searchVale}
-                  onChange={this.handleChange}
-                />
-                <div class="input-group-append">
-                  <button
-                    class="btn btn-secondary"
-                    type="button"
-                    onClick={this.searchNews}
-                  >
-                    {" "}
-                    <i class="fa fa-search"></i>
-                  </button>
-                </div>
-              </div>{" "}
-            </form>
+            <div className="row">
+              <div className="col news-category">{this.state.path} News</div>
+              <div className="col">
+                <form style={{ float: "right" }}>
+                  <div class="input-group search">
+                    <input required
+                      type="text"
+                      class="form-control"
+                      placeholder="Search news"
+                      value={searchVale}
+                      onChange={this.handleChange}
+                    />
+                    <div class="input-group-append">
+                      <button
+                        class="btn btn-secondary"
+                        type="button"
+                        onClick={() => this.searchNews(this.state.searchVale)}
+                      >
+                        {" "}
+                        <i class="fa fa-search"></i>
+                      </button>
+                    </div>
+                  </div>{" "}
+                </form>
+              </div>
+            </div>
           </div>
           {newzs}
-          <NoDataFound data ={headLineArticles}/>
+          <NoDataFound data={headLineArticles} />
+          <Error errorMsg={errorMsg} />
 
-          {errorMsg ? 
-        <div class="alert alert-danger">
-            {errorMsg}
-        </div> :null
-        }
+         
+          </div>
         </div>
+        <Footer isSticky={headLineArticles && headLineArticles.length>0 ? false :true}/>
       </>
     );
   }
 }
 
-export default MainPage;
+export default withRouter(MainPage);

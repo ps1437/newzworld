@@ -22,9 +22,9 @@ const NewsItem = props => {
           data-target="#myModal"
           onClick={() => props.description(article)}
         >
-          <a href="#" class="btn btn-link btn-block">
+          <span  class="btn btn-link btn-block">
             Read More
-          </a>
+          </span>
         </div>
       </div>
     );
