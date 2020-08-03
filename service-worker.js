@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/ps1437/newzworld/precache-manifest.a3e3a27d4ae9807be5ad05f1968f99a7.js"
+  "/newzworld/precache-manifest.973096f33d9c8a85e7509397fb990cf3.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/ps1437/newzworld/index.html", {
+workbox.routing.registerNavigationRoute("/newzworld/index.html", {
   
   blacklist: [/^\/_/,/\/[^/]+\.[^/]+$/],
 });
