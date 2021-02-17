@@ -12,23 +12,23 @@ self.__precacheManifest = [
     "url": "/newzworld/static/js/main.14d3b45f.chunk.js"
   },
   {
-    "revision": "864e59b16660ce46b73c",
-    "url": "/newzworld/static/js/runtime~main.864e59b1.js"
+    "revision": "466e03a813ab5d88b2ff",
+    "url": "/newzworld/static/js/runtime~main.466e03a8.js"
   },
   {
     "revision": "99cae0ad00df4c7ac1ce",
     "url": "/newzworld/static/js/3.99cae0ad.chunk.js"
   },
   {
-    "revision": "15b2c845befd23bf42b6",
-    "url": "/newzworld/static/js/4.15b2c845.chunk.js"
+    "revision": "c86fcb4cf2777b03a828",
+    "url": "/newzworld/static/js/4.c86fcb4c.chunk.js"
   },
   {
-    "revision": "d74548ba2394096b69a7",
-    "url": "/newzworld/static/js/5.d74548ba.chunk.js"
+    "revision": "f3a0857023d88ba58179",
+    "url": "/newzworld/static/js/5.f3a08570.chunk.js"
   },
   {
-    "revision": "c00a050db86768cd7dce9be8a43646f1",
+    "revision": "c12c3bc7f4b0f6f7fc23ecf33b5cf72c",
     "url": "/newzworld/index.html"
   }
 ];
